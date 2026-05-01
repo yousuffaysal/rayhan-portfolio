@@ -67,9 +67,10 @@ const wordVariant = {
   visible: { opacity: 1, y: 0, skewY: 0, transition: { duration: 0.9, ease } },
 }
 
-const FloatingBadge = ({ icon, color, top, bottom, left, right, title, subtitle, delay, yOffset = 10, duration = 4 }: any) => (
+const FloatingBadge = ({ icon, color, top, bottom, left, right, title, subtitle, delay, yOffset = 10, duration = 4, className = "" }: any) => (
   <motion.div
     style={{ position: 'absolute', top, bottom, left, right, zIndex: 10 }}
+    className={`hidden lg:block ${className}`}
   >
     <motion.div
       initial={{ opacity: 0, scale: 0.8, y: 20 }}

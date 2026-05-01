@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Bricolage_Grotesque, Instrument_Sans, DM_Mono } from 'next/font/google'
 import ThemeProvider from '@/components/ThemeProvider'
+import SmoothScroll from '@/components/SmoothScroll'
 import './globals.css'
 
 const bricolage = Bricolage_Grotesque({
@@ -38,7 +39,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${bricolage.variable} ${instrumentSans.variable} ${dmMono.variable}`}
     >
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <SmoothScroll>{children}</SmoothScroll>
+        </ThemeProvider>
       </body>
     </html>
   )

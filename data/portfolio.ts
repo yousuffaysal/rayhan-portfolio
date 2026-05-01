@@ -113,7 +113,7 @@ export const projectsData = [
     tech: ['React 19', 'Vite', 'TailwindCSS', 'Framer Motion', 'GSAP', 'Firebase', 'Stripe', 'React Query', 'React Hook Form', 'Node.js', 'Express.js'],
     liveUrl: 'https://birstbd.com',
     ghClientUrl: 'https://github.com/Rayhan-50/birstbd_foxmenstudio-frontend',
-    ghServerUrl: '#',
+    ghServerUrl: 'https://github.com/Rayhan-50/birstbd_foxmenstudio-beckend',
     screenshot: '/projects/birstbd.png',
     wide: true,
     challenges: [
@@ -225,7 +225,7 @@ export const projectsData = [
     tech: ['React 19', 'Vite', 'Tailwind CSS 4', 'DaisyUI 5', 'Framer Motion', 'Firebase Auth', 'React Hook Form', 'TanStack Query', 'SweetAlert2', 'React Toastify', 'Node.js', 'MongoDB'],
     liveUrl: 'https://noorviabd.com',
     ghClientUrl: 'https://github.com/Rayhan-50/noorvia-frontend',
-    ghServerUrl: '#',
+    ghServerUrl: 'https://github.com/Rayhan-50/noorvia-beckend',
     screenshot: '/projects/noorvia.png',
     wide: false,
     challenges: [
@@ -239,6 +239,34 @@ export const projectsData = [
       'Implement CRM capabilities for customer relationship management.',
       'Add integrations with popular third-party business tools.',
       'Build an API marketplace for extending platform functionality.',
+    ],
+  },
+  {
+    id: 5,
+    name: 'Redleaf-BD — Organic Food Store',
+    emoji: '🌿',
+    bg: 'linear-gradient(135deg,#0a1a0f,#0f2a14)',
+    tags: ['E-commerce', 'Featured', 'Full-Stack', 'Premium UI'],
+    desc: 'Premium organic food and grocery platform with category-based browsing, cart management, and seamless UX.',
+    fullDesc:
+      'Redleaf-BD is a high-end e-commerce platform dedicated to premium organic products like pure honey, organic spices, and nutritious grains. It features a clean, professional interface with robust search, category filtering, and impact stories. Built with a focus on high-performance, accessibility, and a clean brand aesthetic that builds consumer trust.',
+    tech: ['Next.js 15', 'React Query', 'Tailwind CSS', 'Framer Motion', 'Node.js', 'Express.js', 'MongoDB', 'Firebase', 'Vercel'],
+    liveUrl: 'https://redleaf-bd-frontend-i83q.vercel.app/',
+    ghClientUrl: 'https://github.com/Rayhan-50/Redleaf-BD-frontend',
+    ghServerUrl: 'https://github.com/Rayhan-50/Redleaf-BD-backend',
+    screenshot: '/projects/redleaf.png',
+    wide: true,
+    challenges: [
+      'Implementing a scalable product category system with nested navigation and sidebar filtering.',
+      'Optimizing high-resolution product imagery for fast load times using Next.js Image optimization.',
+      'Designing a clean, brand-focused UI that balances information density with a premium aesthetic.',
+      'Managing complex state for the multi-item shopping cart and order flow synchronization.',
+    ],
+    future: [
+      'Integrate mobile payment systems like bKash/Nagad for local transactions.',
+      'Add AI-powered product recommendations based on health goals and purchase history.',
+      'Build a vendor dashboard for local farmers to list products directly.',
+      'Implement a subscription model for recurring monthly organic grocery orders.',
     ],
   },
 ]

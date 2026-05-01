@@ -270,12 +270,12 @@ export default function Certificates() {
       <style jsx>{`
         .cert-grid-custom {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-          gap: 32px;
+          grid-template-columns: repeat(auto-fill, minmax(min(100%, 360px), 1fr));
+          gap: 24px;
         }
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
           .cert-grid-custom {
-            grid-template-columns: 1fr;
+            gap: 16px;
           }
         }
       `}</style>

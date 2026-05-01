@@ -49,7 +49,7 @@
                   linear-gradient(to top, #f0f4ff 0%, transparent 30%);
 }
 
-html { scroll-behavior: smooth }
+html { scroll-behavior: auto } /* Lenis handles smooth scroll */
 
 body {
   background: var(--bg);
@@ -57,7 +57,7 @@ body {
   font-family: var(--font-b), 'Instrument Sans', sans-serif;
   font-size: 16px;
   line-height: 1.65;
-  overflow-x: hidden;
+  overflow-x: clip;
   transition: background .4s, color .4s;
 }
 
@@ -81,8 +81,8 @@ body::after {
 [data-theme="light"] body::after { opacity: .2 }
 
 /* ─── NAV ─── */
-#nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; padding: 20px 64px; display: flex; align-items: center; justify-content: space-between; gap: 24px; transition: .4s var(--ease) }
-#nav.stuck { background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 14px 64px }
+#nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; padding: 20px 32px; display: flex; align-items: center; justify-content: space-between; gap: 24px; transition: .4s var(--ease) }
+#nav.stuck { background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 14px 32px }
 .nav-logo { display: flex; align-items: center; gap: 10px; }
 .logo-mark {
   width: 44px; height: 44px;
@@ -177,7 +177,7 @@ body::after {
 .rv.d2 { transition-delay: .16s }
 
 /* ─── SECTION SHELL ─── */
-.wrap { max-width: 1160px; margin: 0 auto; padding: 0 64px }
+.wrap { max-width: 1160px; margin: 0 auto; padding: 0 32px }
 section { padding: 120px 0; border-top: 1px solid var(--border) }
 
 .sec-tag { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-m), 'DM Mono', monospace; font-size: 11px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--accent); margin-bottom: 18px }
@@ -260,7 +260,7 @@ section { padding: 120px 0; border-top: 1px solid var(--border) }
 .hero-avail .dot { width: 7px; height: 7px; background: #4ade80; border-radius: 50%; box-shadow: 0 0 10px #4ade80; animation: blink 2s ease-in-out infinite }
 @keyframes blink { 0%,100%{opacity:1}50%{opacity:.3} }
 
-.hero-name { font-family: var(--font-d), 'Bricolage Grotesque', sans-serif; font-size: clamp(52px,6.5vw,92px); font-weight: 800; line-height: .92; letter-spacing: -3px; margin-bottom: 24px }
+.hero-name { font-family: var(--font-d), 'Bricolage Grotesque', sans-serif; font-size: clamp(40px,7vw,92px); font-weight: 800; line-height: .92; letter-spacing: clamp(-1.5px,-0.04em,-3px); margin-bottom: 24px }
 .hero-name .blue { color: var(--accent) }
 .hero-name .dim { color: var(--text3) }
 .hero-role { font-family: var(--font-m), 'DM Mono', monospace; font-size: 15px; color: var(--accent); margin-bottom: 20px; min-height: 1.5em; display: flex; align-items: center; gap: 5px }
@@ -309,11 +309,52 @@ section { padding: 120px 0; border-top: 1px solid var(--border) }
 }
 
 
+/* ─── TABLET (≤960px) ─── */
 @media(max-width:960px) {
-  #hero { grid-template-columns: 1fr; min-height: auto }
-  .hero-left { padding: 120px 24px 60px; padding-top: 120px }
+  #hero {
+    grid-template-columns: 1fr;
+    min-height: 100svh;
+    position: relative;
+  }
+  /* Image becomes a full-section background on tablet/mobile */
+  .hero-right {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .hero-photo-img {
+    object-position: top center;
+  }
+  /* Overlay fades from bottom for mobile (text reads over darkened bottom half) */
+  .hero-overlay {
+    background: linear-gradient(to top, var(--bg) 0%, color-mix(in srgb, var(--bg) 80%, transparent) 45%, color-mix(in srgb, var(--bg) 40%, transparent) 70%, transparent 100%);
+  }
+  [data-theme="light"] .hero-overlay {
+    background: linear-gradient(to top, var(--bg) 0%, color-mix(in srgb, var(--bg) 80%, transparent) 45%, color-mix(in srgb, var(--bg) 40%, transparent) 70%, transparent 100%);
+  }
+  .hero-left {
+    position: relative;
+    z-index: 2;
+    padding: 110px 24px 70px;
+    min-height: 100svh;
+    justify-content: flex-end;
+  }
   .hero-left::before { display: none }
-  .hero-right { display: none }
+  .hero-desc { max-width: 100% }
+}
+
+/* ─── MOBILE (≤640px) ─── */
+@media(max-width:640px) {
+  .hero-left { padding: 100px 20px 60px; min-height: 100svh; justify-content: flex-end }
+  .hero-avail { font-size: 11.5px; padding: 7px 14px }
+  .hero-name { letter-spacing: -1px }
+  .hero-role { font-size: 13px }
+  .hero-desc { font-size: 15px }
+  .hero-socials { gap: 8px }
+  /* Badges hidden on phones */
+  .hero-badge-float, .hero-badge-float2 { display: none }
 }
 
 /* ─── ABOUT ─── */
@@ -339,7 +380,8 @@ section { padding: 120px 0; border-top: 1px solid var(--border) }
 .sb-pct { font-family: var(--font-m), 'DM Mono', monospace; font-size: 11px; color: var(--accent) }
 .sb-track { height: 4px; background: var(--border); border-radius: 99px; overflow: hidden }
 .sb-fill { height: 100%; background: linear-gradient(90deg, var(--accent), rgba(32,176,248,.5)); border-radius: 99px; width: 0; transition: width 1.4s var(--ease) }
-@media(max-width:900px) { .skills-cats { grid-template-columns: 1fr } }
+@media(max-width:900px) { .skills-cats { grid-template-columns: repeat(2,1fr) } }
+@media(max-width:560px) { .skills-cats { grid-template-columns: 1fr } }
 
 /* ─── EXPERIENCE ─── */
 .exp-list { margin-top: 56px; display: flex; flex-direction: column }
@@ -461,7 +503,7 @@ section { padding: 120px 0; border-top: 1px solid var(--border) }
 @media(max-width:800px) { .contact-wrap { grid-template-columns: 1fr; gap: 48px } }
 
 /* ─── SOCIAL STRIP ─── */
-.sf-strip { position: relative; z-index: 1; padding: 60px 64px; display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; border-top: 1px solid var(--border) }
+.sf-strip { position: relative; z-index: 1; padding: 60px 32px; display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; border-top: 1px solid var(--border) }
 .sf-left .sf-title { font-family: var(--font-d), 'Bricolage Grotesque', sans-serif; font-size: 24px; font-weight: 800; letter-spacing: -.5px; margin-bottom: 4px }
 .sf-left .sf-sub { font-size: 13px; color: var(--text2) }
 .sf-links { display: flex; gap: 10px; flex-wrap: wrap }
@@ -474,4 +516,52 @@ section { padding: 120px 0; border-top: 1px solid var(--border) }
 /* ─── FOOTER ─── */
 /* Handled in component */
 
-@media(max-width:768px) { .wrap { padding: 0 24px } section { padding: 80px 0 } .form-row { grid-template-columns: 1fr } }
+/* ─── GLOBAL MOBILE ─── */
+@media(max-width:768px) {
+  .wrap { padding: 0 20px }
+  section { padding: 72px 0 }
+  .sec-h { letter-spacing: -1px }
+  /* About */
+  .about-grid { gap: 36px }
+  .about-quote { font-size: 20px; padding-left: 18px }
+  /* Experience */
+  .exp-item { gap: 20px; padding: 28px 0 }
+  .exp-role { font-size: 18px }
+  /* Projects */
+  .proj-card.wide .proj-thumb { height: 200px }
+  /* Contact */
+  .form-row { grid-template-columns: 1fr }
+  .contact-wrap { gap: 36px }
+  .contact-info-title { font-size: 24px }
+  /* Education */
+  .edu-content { padding: 20px }
+  .edu-degree-title { font-size: 18px }
+  /* Modal */
+  .modal-bg { padding: 12px }
+  .modal { border-radius: 16px }
+  .modal-hero { height: 180px }
+  /* Social strip */
+  .sf-strip { padding: 36px 20px }
+  .sf-left .sf-title { font-size: 20px }
+  /* Footer */
+  footer { flex-direction: column; text-align: center; gap: 10px }
+}
+
+@media(max-width:480px) {
+  .wrap { padding: 0 16px }
+  section { padding: 60px 0 }
+  .btn { padding: 11px 22px; font-size: 13.5px }
+  .btn-sm { padding: 8px 16px; font-size: 12.5px }
+  .sec-h { font-size: clamp(28px, 8vw, 40px); letter-spacing: -0.8px }
+  /* Projects grid */
+  .proj-thumb { height: 180px }
+  /* Skills */
+  .skill-cat { padding: 20px }
+  /* Certificates */
+  .cert-grid { grid-template-columns: 1fr }
+  /* Education */
+  .edu-milestone { grid-template-columns: 40px 1fr; gap: 16px }
+  .edu-timeline-line { left: 17px }
+  /* Nav burger alignment */
+  .nav-right { gap: 8px }
+}
