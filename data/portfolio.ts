@@ -113,6 +113,7 @@ export const projectsData = [
     liveUrl: 'https://birstbd.com',
     ghClientUrl: 'https://github.com/Rayhan-50/birstbd_foxmenstudio-frontend',
     ghServerUrl: '#',
+    screenshot: '/projects/birstbd.webp',
     wide: true,
     challenges: [
       'Integrating Stripe payment gateway with secure webhook handling for course purchases.',
@@ -140,6 +141,7 @@ export const projectsData = [
     liveUrl: 'https://skillbridge-client-coral.vercel.app',
     ghClientUrl: 'https://github.com/Rayhan-50/SkillBridge-Client-',
     ghServerUrl: 'https://github.com/Rayhan-50/SkillBridge-server',
+    screenshot: '/projects/skillbridge.webp',
     wide: false,
     challenges: [
       'Building a real-time booking system that prevents double-bookings across time zones.',
@@ -167,6 +169,7 @@ export const projectsData = [
     liveUrl: 'https://lesonpaw.web.app',
     ghClientUrl: 'https://github.com/Rayhan-50/Lesson-paw',
     ghServerUrl: 'https://github.com/Rayhan-50/Lesson-paw-server',
+    screenshot: '/projects/lesonpaw.webp',
     wide: false,
     challenges: [
       'Implementing full i18n localization for 4 languages with dynamic content switching.',
@@ -194,6 +197,7 @@ export const projectsData = [
     liveUrl: 'https://thelebasbuyingint.com',
     ghClientUrl: 'https://github.com/Rayhan-50/thelebasbuyingint-client',
     ghServerUrl: 'https://github.com/Rayhan-50/thelebasbuyingint-server',
+    screenshot: '/projects/lebas.webp',
     wide: false,
     challenges: [
       'Combining Firebase auth with JWT for dual-layer authentication security.',
@@ -221,6 +225,7 @@ export const projectsData = [
     liveUrl: 'https://noorviabd.com',
     ghClientUrl: 'https://github.com/Rayhan-50/noorvia-frontend',
     ghServerUrl: '#',
+    screenshot: '/projects/noorvia.webp',
     wide: false,
     challenges: [
       'Migrating to React 19 and leveraging new concurrent features for better UX.',
