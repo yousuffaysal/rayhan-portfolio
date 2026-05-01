@@ -277,7 +277,6 @@ section { padding: 120px 0; border-top: 1px solid var(--border) }
 /* Right side — photo fills entire column */
 .hero-right {
   position: relative;
-  overflow: hidden;
   z-index: 1;
 }
 
@@ -309,31 +308,6 @@ section { padding: 120px 0; border-top: 1px solid var(--border) }
   z-index: 0;
 }
 
-/* Badges — positioned within the right column */
-.hero-badge-float {
-  position: absolute; top: 22%; right: 40px; z-index: 10;
-  background: var(--bg2); border: 1px solid var(--border2);
-  border-radius: 14px; padding: 14px 20px;
-  box-shadow: 0 16px 48px rgba(0,0,0,.45), 0 0 0 1px rgba(32,176,248,.1);
-  animation: badgeFloat 3s ease-in-out infinite;
-}
-.hbf-num { font-family: var(--font-d), 'Bricolage Grotesque', sans-serif; font-size: 30px; font-weight: 800; color: var(--accent); line-height: 1 }
-.hbf-label { font-size: 11px; color: var(--text2); margin-top: 2px }
-.hero-badge-float2 {
-  position: absolute; top: 42%; right: 40px; z-index: 10;
-  background: var(--bg2); border: 1px solid var(--border2);
-  border-radius: 14px; padding: 12px 16px;
-  box-shadow: 0 16px 48px rgba(0,0,0,.45), 0 0 0 1px rgba(32,176,248,.1);
-  display: flex; align-items: center; gap: 10px;
-  animation: badgeFloat 4s ease-in-out infinite reverse;
-}
-@keyframes badgeFloat {
-  0%,100% { transform: translateY(0) }
-  50% { transform: translateY(-10px) }
-}
-.hbf2-icon { font-size: 22px }
-.hbf2-t { font-family: var(--font-d), 'Bricolage Grotesque', sans-serif; font-size: 13px; font-weight: 700 }
-.hbf2-s { font-size: 11px; color: var(--text2) }
 
 @media(max-width:960px) {
   #hero { grid-template-columns: 1fr; min-height: auto }

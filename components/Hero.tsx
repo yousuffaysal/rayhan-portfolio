@@ -67,6 +67,45 @@ const wordVariant = {
   visible: { opacity: 1, y: 0, skewY: 0, transition: { duration: 0.9, ease } },
 }
 
+const FloatingBadge = ({ icon, color, top, bottom, left, right, title, subtitle, delay, yOffset = 10, duration = 4 }: any) => (
+  <motion.div
+    style={{ position: 'absolute', top, bottom, left, right, zIndex: 10 }}
+  >
+    <motion.div
+      initial={{ opacity: 0, scale: 0.8, y: 20 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      transition={{ delay, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+    >
+      <motion.div
+        animate={{ y: [0, -yOffset, 0] }}
+        transition={{ duration, repeat: Infinity, ease: 'easeInOut', delay }}
+        style={{
+          display: 'flex', alignItems: 'center', gap: 14,
+          background: 'color-mix(in srgb, var(--bg) 80%, transparent)',
+          backdropFilter: 'blur(16px)',
+          padding: '12px 20px 12px 12px',
+          borderRadius: 20,
+          border: '1px solid var(--border)',
+          boxShadow: '0 20px 40px rgba(0,0,0,0.2)',
+          whiteSpace: 'nowrap',
+        }}
+      >
+        <div style={{
+          width: 44, height: 44, borderRadius: 14, flexShrink: 0,
+          background: color.bg, color: color.icon,
+          display: 'flex', alignItems: 'center', justifyContent: 'center'
+        }}>
+          {icon}
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+          <span style={{ color: 'var(--text)', fontWeight: 800, fontSize: 16, fontFamily: "var(--font-d), 'Bricolage Grotesque', sans-serif" }}>{title}</span>
+          <span style={{ color: 'var(--text2)', fontSize: 13, fontWeight: 500 }}>{subtitle}</span>
+        </div>
+      </motion.div>
+    </motion.div>
+  </motion.div>
+)
+
 export default function Hero() {
   const typed = useTyping(roles)
   const [started, setStarted] = useState(false)
@@ -183,28 +222,36 @@ export default function Hero() {
         />
         <div className="hero-overlay" />
 
-        <motion.div
-          className="hero-badge-float"
-          initial={{ opacity: 0, scale: 0.7 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 1.1, duration: 0.6, ease }}
-        >
-          <div className="hbf-num">{years}+</div>
-          <div className="hbf-label">Years Exp.</div>
-        </motion.div>
-
-        <motion.div
-          className="hero-badge-float2"
-          initial={{ opacity: 0, scale: 0.7 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 1.3, duration: 0.6, ease }}
-        >
-          <div className="hbf2-icon">🚀</div>
-          <div>
-            <div className="hbf2-t">7+ Projects</div>
-            <div className="hbf2-s">Shipped to production</div>
-          </div>
-        </motion.div>
+        <FloatingBadge
+          title="Senior" subtitle="Web Instructor"
+          top="15%" left="-5%" delay={1.1} duration={4.5} yOffset={12}
+          color={{ bg: 'rgba(239, 68, 68, 0.15)', icon: '#ef4444' }}
+          icon={<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>}
+        />
+        <FloatingBadge
+          title="1500+ Hrs" subtitle="Live Sessions"
+          top="12%" right="5%" delay={1.3} duration={5} yOffset={15}
+          color={{ bg: 'rgba(234, 179, 8, 0.15)', icon: '#eab308' }}
+          icon={<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 4h10"/><path d="M6 4h12a2 2 0 0 1 2 2v2a2.5 2.5 0 0 1-2.5 2.5h-.17A10.02 10.02 0 0 1 12 17 10 10 0 0 1 4.67 10.5H4.5A2.5 2.5 0 0 1 2 8V6a2 2 0 0 1 2-2h2"/></svg>}
+        />
+        <FloatingBadge
+          title="11K+" subtitle="Problems Solved"
+          top="45%" left="-18%" delay={1.5} duration={4} yOffset={10}
+          color={{ bg: 'rgba(59, 130, 246, 0.15)', icon: '#3b82f6' }}
+          icon={<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>}
+        />
+        <FloatingBadge
+          title="135+" subtitle="Github Repos"
+          bottom="15%" left="-10%" delay={1.7} duration={5.5} yOffset={14}
+          color={{ bg: 'rgba(34, 197, 94, 0.15)', icon: '#22c55e' }}
+          icon={<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>}
+        />
+        <FloatingBadge
+          title="8.9K+" subtitle="Projects Reviewed"
+          bottom="12%" right="5%" delay={1.9} duration={4.8} yOffset={12}
+          color={{ bg: 'rgba(168, 85, 247, 0.15)', icon: '#a855f7' }}
+          icon={<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="m9 15 2 2 4-4"/></svg>}
+        />
       </div>
     </section>
   )
