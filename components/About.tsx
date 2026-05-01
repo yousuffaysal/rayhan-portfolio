@@ -54,10 +54,10 @@ export default function About() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
           
           {/* Left Column (Quote & Skills) */}
-          <motion.div variants={fadeRight} initial="hidden" whileInView="visible" viewport={{ once: true }} className="lg:col-span-5 flex flex-col gap-6">
+          <motion.div variants={fadeRight} initial="hidden" whileInView="visible" viewport={{ once: true }} className="lg:col-span-5 flex flex-col gap-12">
             
-            {/* Quote Card */}
-            <div className="p-8 md:p-10 rounded-[24px] bg-[var(--bg)] border border-[var(--border)] relative overflow-hidden group hover:border-[rgba(32,176,248,0.3)] transition-colors duration-500 shadow-xl">
+            {/* Quote Section (Free) */}
+            <div className="relative group">
                <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent-dim)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                <div className="relative z-10">
                  <div className="text-5xl text-[var(--accent)] mb-2 font-[var(--font-d)] leading-none">&ldquo;</div>
@@ -67,33 +67,99 @@ export default function About() {
                </div>
             </div>
 
-            {/* Tags Card */}
-            <div className="p-8 md:p-10 rounded-[24px] bg-[var(--surface)] border border-[var(--border)] shadow-xl">
-              <h3 className="font-[var(--font-m)] text-[11px] font-semibold text-[var(--text3)] uppercase tracking-[0.1em] mb-5 flex items-center gap-3">
-                <span className="w-8 h-[1px] bg-[var(--border2)]" />
+            {/* Tags Section (Premium Cluster Redesign) */}
+            <div className="relative w-full mt-12">
+              <h3 className="font-[var(--font-m)] text-[12px] font-bold text-[var(--text3)] uppercase tracking-[0.25em] mb-10 flex items-center gap-4">
+                <span className="w-12 h-[1px] bg-[var(--border2)]" />
                 Core Toolkit
               </h3>
-              <div className="flex flex-wrap gap-2.5">
-                {tags.map((t, i) => (
-                  <span 
-                    key={t.label} 
-                    className={`px-4 py-2 rounded-full text-[12.5px] font-semibold border ${
-                      t.hl 
-                        ? 'bg-[var(--accent-dim)] border-[rgba(32,176,248,0.25)] text-[var(--accent)]' 
-                        : 'bg-[var(--bg)] border-[var(--border2)] text-[var(--text2)]'
-                    } transition-colors duration-300 hover:border-[var(--accent)] hover:text-[var(--accent)]`}
-                  >
-                    {t.label}
-                  </span>
-                ))}
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
+                {/* Primary Card (Full-Stack) - Large */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  whileHover={{ y: -5 }}
+                  className="md:col-span-2 lg:col-span-2 bg-[var(--surface2)] border border-[var(--border2)] p-6 rounded-3xl flex flex-col justify-between h-[180px] shadow-xl group relative overflow-hidden"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent)] to-transparent opacity-5 group-hover:opacity-10 transition-opacity" />
+                  <div className="flex justify-between items-start relative z-10">
+                    <div className="w-12 h-12 bg-[var(--accent-dim)] rounded-2xl flex items-center justify-center text-2xl">🚀</div>
+                    <span className="px-3 py-1 bg-[var(--accent)] text-white text-[10px] font-bold uppercase rounded-full">Primary Stack</span>
+                  </div>
+                  <div className="relative z-10">
+                    <h4 className="text-2xl font-bold text-[var(--text)] mb-1">Full-Stack Dev</h4>
+                    <p className="text-sm text-[var(--text3)]">Building end-to-end scalable solutions</p>
+                  </div>
+                </motion.div>
+
+                {/* React Card - Medium */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.1 }}
+                  whileHover={{ y: -5 }}
+                  className="bg-[var(--surface2)] border border-[var(--border2)] p-6 rounded-3xl flex flex-col justify-between h-[180px] shadow-lg group relative overflow-hidden"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#61DAFB] to-transparent opacity-5 group-hover:opacity-10 transition-opacity" />
+                  <div className="w-12 h-12 bg-[rgba(97,218,251,0.1)] text-[#61DAFB] rounded-2xl flex items-center justify-center text-2xl relative z-10">⚛️</div>
+                  <div className="relative z-10">
+                    <h4 className="text-xl font-bold text-[var(--text)]">React.js</h4>
+                    <span className="text-[10px] uppercase font-bold text-[#61DAFB]">Expert</span>
+                  </div>
+                </motion.div>
+
+                {/* Node & Postgres - Stacked */}
+                <div className="lg:col-span-1 grid grid-cols-1 gap-4 lg:gap-5">
+                   <motion.div
+                    whileHover={{ x: 5 }}
+                    className="bg-[var(--surface)] border border-[var(--border)] p-5 rounded-[24px] flex items-center gap-4 group"
+                   >
+                     <div className="w-10 h-10 bg-[var(--bg)] rounded-xl flex items-center justify-center text-xl group-hover:scale-110 transition-transform">⬢</div>
+                     <div className="flex flex-col">
+                        <span className="font-bold text-[var(--text)]">Node.js</span>
+                        <span className="text-[10px] text-[var(--accent)] font-bold uppercase">Expert</span>
+                     </div>
+                   </motion.div>
+                   <motion.div
+                    whileHover={{ x: 5 }}
+                    className="bg-[var(--surface)] border border-[var(--border)] p-5 rounded-[24px] flex items-center gap-4 group"
+                   >
+                     <div className="w-10 h-10 bg-[var(--bg)] rounded-xl flex items-center justify-center text-xl group-hover:scale-110 transition-transform">🐘</div>
+                     <div className="flex flex-col">
+                        <span className="font-bold text-[var(--text)]">PostgreSQL</span>
+                        <span className="text-[10px] text-[var(--accent)] font-bold uppercase">Database</span>
+                     </div>
+                   </motion.div>
+                </div>
+
+                {/* Others - Small Grid */}
+                <div className="md:col-span-2 lg:col-span-2 grid grid-cols-1 sm:grid-cols-3 gap-4 lg:gap-5">
+                   {[
+                     { label: 'Golang', icon: '🐹' },
+                     { label: 'Open Source', icon: '🔓' },
+                     { label: 'Dhaka, BD 🇧🇩', icon: '📍' },
+                   ].map((t, i) => (
+                     <motion.div
+                        key={t.label}
+                        whileHover={{ scale: 1.02 }}
+                        className="bg-[var(--bg)] border border-[var(--border)] p-4 rounded-2xl flex items-center gap-3"
+                     >
+                        <div className="text-xl">{t.icon}</div>
+                        <span className="text-sm font-bold text-[var(--text2)]">{t.label}</span>
+                     </motion.div>
+                   ))}
+                </div>
               </div>
             </div>
 
           </motion.div>
 
-          {/* Right Column (Bio) */}
+          {/* Right Column (Bio - Free) */}
           <motion.div variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className="lg:col-span-7 h-full">
-            <div className="p-8 md:p-12 rounded-[24px] bg-[var(--bg)] border border-[var(--border)] shadow-2xl relative h-full flex flex-col justify-center overflow-hidden">
+            <div className="relative h-full flex flex-col justify-center lg:pl-12">
               {/* Decorative blur in corner */}
               <div className="absolute -top-12 -right-12 w-48 h-48 bg-[var(--accent)] rounded-full blur-[100px] opacity-10 pointer-events-none" />
               <div className="absolute -bottom-12 -left-12 w-48 h-48 bg-[var(--purple)] rounded-full blur-[100px] opacity-[0.07] pointer-events-none" />

@@ -223,7 +223,7 @@ export default function Hero() {
         <div className="hero-overlay" />
 
         <FloatingBadge
-          title="Senior" subtitle="Web Instructor"
+          title="Lead" subtitle="Full Stack Developer"
           top="15%" left="-5%" delay={1.1} duration={4.5} yOffset={12}
           color={{ bg: 'rgba(239, 68, 68, 0.15)', icon: '#ef4444' }}
           icon={<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>}
@@ -235,19 +235,19 @@ export default function Hero() {
           icon={<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 4h10"/><path d="M6 4h12a2 2 0 0 1 2 2v2a2.5 2.5 0 0 1-2.5 2.5h-.17A10.02 10.02 0 0 1 12 17 10 10 0 0 1 4.67 10.5H4.5A2.5 2.5 0 0 1 2 8V6a2 2 0 0 1 2-2h2"/></svg>}
         />
         <FloatingBadge
-          title="11K+" subtitle="Problems Solved"
+          title="150+" subtitle="Problems Solved"
           top="45%" left="-18%" delay={1.5} duration={4} yOffset={10}
           color={{ bg: 'rgba(59, 130, 246, 0.15)', icon: '#3b82f6' }}
           icon={<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>}
         />
         <FloatingBadge
-          title="135+" subtitle="Github Repos"
+          title="50+" subtitle="Github Repos"
           bottom="15%" left="-10%" delay={1.7} duration={5.5} yOffset={14}
           color={{ bg: 'rgba(34, 197, 94, 0.15)', icon: '#22c55e' }}
           icon={<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>}
         />
         <FloatingBadge
-          title="8.9K+" subtitle="Projects Reviewed"
+          title="80+" subtitle="Projects Done"
           bottom="12%" right="5%" delay={1.9} duration={4.8} yOffset={12}
           color={{ bg: 'rgba(168, 85, 247, 0.15)', icon: '#a855f7' }}
           icon={<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="m9 15 2 2 4-4"/></svg>}
