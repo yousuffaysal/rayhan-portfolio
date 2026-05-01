@@ -1,0 +1,39 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Message {
+  id        String    @id @default(cuid())
+  name      String
+  email     String
+  subject   String?
+  message   String
+  read      Boolean   @default(false)
+  replied   Boolean   @default(false)
+  replyText String?
+  repliedAt DateTime?
+  createdAt DateTime  @default(now())
+}
+
+model Project {
+  id          String   @id @default(cuid())
+  name        String
+  emoji       String   @default("🚀")
+  tags        String[]
+  desc        String
+  fullDesc    String
+  tech        String[]
+  liveUrl     String   @default("#")
+  ghClientUrl String   @default("#")
+  ghServerUrl String   @default("#")
+  screenshot  String   @default("")
+  challenges  String[]
+  order       Int      @default(0)
+  featured    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
