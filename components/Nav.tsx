@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTheme } from './ThemeProvider'
+import { personalInfo } from '@/data/portfolio'
 
 export default function Nav() {
   const [stuck, setStuck] = useState(false)
@@ -47,8 +48,11 @@ export default function Nav() {
               </motion.span>
             </AnimatePresence>
           </button>
-          <a href="/Rayhan-CV.pdf" download className="nav-resume">
-            Download CV ↓
+          <a href={`mailto:${personalInfo.email}`} className="nav-email">
+            Email: {personalInfo.email}
+          </a>
+          <a href={personalInfo.whatsapp} target="_blank" rel="noreferrer" className="nav-resume">
+            Contact Me
           </a>
         </div>
         <button
@@ -69,8 +73,8 @@ export default function Nav() {
         <a href="#projects" onClick={closeMob}>Projects</a>
         <a href="#education" onClick={closeMob}>Education</a>
         <a href="#contact" onClick={closeMob}>Contact</a>
-        <a href="/Rayhan-CV.pdf" download className="btn btn-fill" onClick={closeMob}>
-          Download CV
+        <a href={personalInfo.whatsapp} target="_blank" rel="noreferrer" className="btn btn-fill" onClick={closeMob}>
+          Contact Me
         </a>
       </div>
     </>

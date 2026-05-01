@@ -8,6 +8,7 @@ export const personalInfo = {
   facebook: 'https://www.facebook.com/raihan.ahamad.750/',
   twitter: '#',
   whatsapp: 'https://wa.me/8801645991970',
+  cvLink: 'https://drive.google.com/file/d/1zFdNE3owDTzjQN66ScdzziadJudMka6X/view?usp=sharing',
   devto: '#',
 }
 

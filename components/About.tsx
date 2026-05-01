@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { personalInfo } from '@/data/portfolio'
 import { fadeUp, fadeLeft, fadeRight, stagger, scaleIn } from '@/lib/animations'
 
 const tags = [
@@ -120,7 +121,7 @@ export default function About() {
 
                 <div className="flex flex-wrap gap-4 pt-6 border-t border-[var(--border)]">
                   <a href="#contact" className="btn btn-fill">Let&rsquo;s Talk</a>
-                  <a href="/Rayhan-CV.pdf" download className="btn btn-ghost">Download CV</a>
+                  <a href={personalInfo.cvLink} target="_blank" rel="noreferrer" className="btn btn-ghost">Download CV</a>
                 </div>
               </div>
             </div>
