@@ -1,13 +1,13 @@
 'use client'
 
 import { useState, FormEvent } from 'react'
+import { motion } from 'framer-motion'
+import { fadeUp, fadeLeft, fadeRight } from '@/lib/animations'
 import { personalInfo } from '@/data/portfolio'
 
 export default function Contact() {
   const [sent, setSent] = useState(false)
-  const [form, setForm] = useState({
-    firstName: '', lastName: '', email: '', subject: '', message: '',
-  })
+  const [form, setForm] = useState({ firstName: '', lastName: '', email: '', subject: '', message: '' })
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }))
@@ -21,17 +21,20 @@ export default function Contact() {
   return (
     <section id="contact">
       <div className="wrap">
-        <div className="sec-tag rv">Contact</div>
-        <h2 className="sec-h rv d1">
+        <motion.div className="sec-tag" variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+          Contact
+        </motion.div>
+        <motion.h2 className="sec-h" variants={fadeUp} custom={1} initial="hidden" whileInView="visible" viewport={{ once: true }}>
           Let&rsquo;s build<br />
           <span style={{ color: 'var(--accent)' }}>something great</span>
-        </h2>
+        </motion.h2>
+
         <div className="contact-wrap">
-          <div className="rv d1">
+          <motion.div variants={fadeLeft} initial="hidden" whileInView="visible" viewport={{ once: true }}>
             <div className="contact-info-title">Got a project in mind?</div>
             <div className="contact-body">
-              Whether it&rsquo;s a new product, freelance work, or just a chat about tech — my inbox
-              is always open. I respond within 24 hours.
+              Whether it&rsquo;s a new product, freelance work, or just a chat about tech — my inbox is
+              always open. I respond within 24 hours.
             </div>
             <div className="contact-detail-list">
               <a href={`mailto:${personalInfo.email}`} className="cdl-item">
@@ -63,71 +66,43 @@ export default function Contact() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="rv d2">
+          <motion.div variants={fadeRight} initial="hidden" whileInView="visible" viewport={{ once: true }}>
             {sent ? (
-              <div className="form-success">
+              <motion.div
+                className="form-success"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
+              >
                 <span className="form-success-icon">🎉</span>
                 <div className="form-success-h">Message Sent!</div>
                 Thanks for reaching out. I&rsquo;ll get back to you within 24 hours.
-              </div>
+              </motion.div>
             ) : (
               <form className="contact-form" onSubmit={handleSubmit}>
                 <div className="form-row">
                   <div className="fg">
                     <label>First Name</label>
-                    <input
-                      type="text"
-                      name="firstName"
-                      placeholder="Arif"
-                      required
-                      value={form.firstName}
-                      onChange={handleChange}
-                    />
+                    <input type="text" name="firstName" placeholder="Arif" required value={form.firstName} onChange={handleChange} />
                   </div>
                   <div className="fg">
                     <label>Last Name</label>
-                    <input
-                      type="text"
-                      name="lastName"
-                      placeholder="Hossain"
-                      required
-                      value={form.lastName}
-                      onChange={handleChange}
-                    />
+                    <input type="text" name="lastName" placeholder="Hossain" required value={form.lastName} onChange={handleChange} />
                   </div>
                 </div>
                 <div className="fg">
                   <label>Email</label>
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="arif@company.com"
-                    required
-                    value={form.email}
-                    onChange={handleChange}
-                  />
+                  <input type="email" name="email" placeholder="arif@company.com" required value={form.email} onChange={handleChange} />
                 </div>
                 <div className="fg">
                   <label>Subject</label>
-                  <input
-                    type="text"
-                    name="subject"
-                    placeholder="Project / Collaboration / Other"
-                    value={form.subject}
-                    onChange={handleChange}
-                  />
+                  <input type="text" name="subject" placeholder="Project / Collaboration / Other" value={form.subject} onChange={handleChange} />
                 </div>
                 <div className="fg">
                   <label>Message</label>
-                  <textarea
-                    rows={5}
-                    name="message"
-                    placeholder="Tell me about your project, deadline, and budget..."
-                    value={form.message}
-                    onChange={handleChange}
-                  />
+                  <textarea rows={5} name="message" placeholder="Tell me about your project, deadline, and budget..." value={form.message} onChange={handleChange} />
                 </div>
                 <button type="submit" className="form-btn">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -137,7 +112,7 @@ export default function Contact() {
                 </button>
               </form>
             )}
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

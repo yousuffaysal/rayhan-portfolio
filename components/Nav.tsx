@@ -1,10 +1,13 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { useTheme } from './ThemeProvider'
 
 export default function Nav() {
   const [stuck, setStuck] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const { theme, toggle } = useTheme()
 
   useEffect(() => {
     const onScroll = () => setStuck(window.scrollY > 20)
@@ -18,7 +21,8 @@ export default function Nav() {
     <>
       <nav id="nav" className={stuck ? 'stuck' : ''}>
         <a href="#hero" className="nav-logo">
-          rayhan<em>.</em>dev
+          <div className="logo-mark">RA</div>
+          <span className="logo-text">rayhan<em>.</em>dev</span>
         </a>
         <ul className="nav-links">
           <li><a href="#about">About</a></li>
@@ -28,13 +32,25 @@ export default function Nav() {
           <li><a href="#education">Education</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
-        <a
-          href="/Rayhan-CV.pdf"
-          download
-          className="nav-resume"
-        >
-          Download CV ↓
-        </a>
+        <div className="nav-right">
+          <button className="theme-btn" onClick={toggle} aria-label="Toggle theme">
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.span
+                key={theme}
+                initial={{ opacity: 0, rotate: -90, scale: 0.5 }}
+                animate={{ opacity: 1, rotate: 0, scale: 1 }}
+                exit={{ opacity: 0, rotate: 90, scale: 0.5 }}
+                transition={{ duration: 0.25 }}
+                style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', lineHeight: 1 }}
+              >
+                {theme === 'dark' ? '☀️' : '🌙'}
+              </motion.span>
+            </AnimatePresence>
+          </button>
+          <a href="/Rayhan-CV.pdf" download className="nav-resume">
+            Download CV ↓
+          </a>
+        </div>
         <button
           className="nav-burger"
           aria-label="Menu"

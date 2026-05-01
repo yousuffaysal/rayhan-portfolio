@@ -1,16 +1,30 @@
+'use client'
+
+import { motion } from 'framer-motion'
+import { fadeUp, fadeLeft, fadeRight } from '@/lib/animations'
 import { experienceData } from '@/data/portfolio'
 
 export default function Experience() {
   return (
     <section id="experience">
       <div className="wrap">
-        <div className="sec-tag rv">Experience</div>
-        <h2 className="sec-h rv d1">
+        <motion.div className="sec-tag" variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+          Experience
+        </motion.div>
+        <motion.h2 className="sec-h" variants={fadeUp} custom={1} initial="hidden" whileInView="visible" viewport={{ once: true }}>
           Where I&rsquo;ve <span style={{ color: 'var(--accent)' }}>worked</span>
-        </h2>
+        </motion.h2>
         <div className="exp-list">
           {experienceData.map((exp, i) => (
-            <div className={`exp-item rv d${i + 1}`} key={exp.company}>
+            <motion.div
+              key={exp.company}
+              className="exp-item"
+              variants={i % 2 === 0 ? fadeLeft : fadeRight}
+              custom={i}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-80px' }}
+            >
               <div className="exp-meta">
                 <div className="exp-year">{exp.year}</div>
                 <div className="exp-company">{exp.company}</div>
@@ -26,7 +40,7 @@ export default function Experience() {
                   </ul>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

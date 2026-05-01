@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Bricolage_Grotesque, Instrument_Sans, DM_Mono } from 'next/font/google'
+import ThemeProvider from '@/components/ThemeProvider'
 import './globals.css'
 
 const bricolage = Bricolage_Grotesque({
@@ -36,7 +37,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="en"
       className={`${bricolage.variable} ${instrumentSans.variable} ${dmMono.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
     </html>
   )
 }
