@@ -89,7 +89,7 @@ function CardGraphic({ accent }: { accent: string }) {
 export default function Experience() {
   return (
     <section id="experience" style={{ background: 'var(--bg2)' }}>
-      <div className="wrap">
+      <div style={{ padding: '0 clamp(24px, 5vw, 80px)' }}>
 
         {/* ── Header ── */}
         <motion.div
@@ -102,7 +102,7 @@ export default function Experience() {
             <h2 className="sec-h" style={{ marginBottom: 0 }}>
               Where I&apos;ve <span style={{ color: 'var(--accent)' }}>worked</span>
             </h2>
-            <p style={{ fontSize: 15, color: 'var(--text2)', lineHeight: 1.8, maxWidth: 360, paddingBottom: 4 }}>
+            <p style={{ fontSize: 16.5, color: 'var(--text2)', lineHeight: 1.8, maxWidth: 420, paddingBottom: 4 }}>
               Real work, real teams, real impact — building production-grade software that serves actual users.
             </p>
           </div>
@@ -132,17 +132,17 @@ export default function Experience() {
               {/* Decorative SVG graphic */}
               <CardGraphic accent={exp.accent} />
 
-              <div style={{ position: 'relative', zIndex: 1, padding: '40px 44px' }}>
+              <div style={{ position: 'relative', zIndex: 1, padding: '52px 56px' }}>
 
                 {/* ─ Top row: company + badge + link ─ */}
                 <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 20, flexWrap: 'wrap', marginBottom: 28 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
                     {/* Company logo */}
                     <div style={{
-                      width: 54, height: 54, borderRadius: 14, flexShrink: 0,
-                      background: exp.accentBg, border: `1.5px solid ${exp.accentBorder}`,
+                      width: 68, height: 68, borderRadius: 18, flexShrink: 0,
+                      background: exp.accentBg, border: `2px solid ${exp.accentBorder}`,
                       overflow: 'hidden',
-                      boxShadow: `0 0 24px ${exp.accentBg}`,
+                      boxShadow: `0 0 32px ${exp.accentBg}`,
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
                     }}>
                       <img
@@ -152,11 +152,11 @@ export default function Experience() {
                       />
                     </div>
                     <div>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 4 }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 6 }}>
                         <span style={{
-                          fontSize: 22, fontWeight: 800, color: 'rgba(255,255,255,0.95)',
+                          fontSize: 26, fontWeight: 800, color: 'rgba(255,255,255,0.95)',
                           fontFamily: "var(--font-d), 'Bricolage Grotesque', sans-serif",
-                          letterSpacing: '-0.4px',
+                          letterSpacing: '-0.5px',
                         }}>
                           {exp.company}
                         </span>
@@ -180,16 +180,16 @@ export default function Experience() {
                           </a>
                         )}
                       </div>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
-                        <span style={{ fontSize: 13, color: 'var(--text2)', display: 'flex', alignItems: 'center', gap: 5 }}>
-                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.5 }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
+                        <span style={{ fontSize: 14, color: 'var(--text2)', display: 'flex', alignItems: 'center', gap: 6 }}>
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.5 }}>
                             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
                           </svg>
                           {exp.location}
                         </span>
                         <span style={{ color: 'rgba(255,255,255,0.15)' }}>·</span>
-                        <span style={{ fontSize: 12.5, color: 'var(--text2)', display: 'flex', alignItems: 'center', gap: 5 }}>
-                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.5 }}>
+                        <span style={{ fontSize: 14, color: 'var(--text2)', display: 'flex', alignItems: 'center', gap: 6 }}>
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.5 }}>
                             <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
                           </svg>
                           {exp.year}
@@ -200,8 +200,8 @@ export default function Experience() {
 
                   {/* Badge */}
                   <span style={{
-                    padding: '6px 16px', borderRadius: 99,
-                    fontSize: 11.5, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase',
+                    padding: '8px 20px', borderRadius: 99,
+                    fontSize: 12.5, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase',
                     color: exp.badgeType === 'full' ? '#20b0f8' : '#a78bfa',
                     background: exp.badgeType === 'full' ? 'rgba(32,176,248,0.1)' : 'rgba(124,58,237,0.1)',
                     border: exp.badgeType === 'full' ? '1px solid rgba(32,176,248,0.25)' : '1px solid rgba(124,58,237,0.25)',
@@ -211,36 +211,36 @@ export default function Experience() {
                 </div>
 
                 {/* Role + tagline */}
-                <div style={{ marginBottom: 28 }}>
+                <div style={{ marginBottom: 32 }}>
                   <div style={{
-                    fontSize: 20, fontWeight: 800, color: 'rgba(255,255,255,0.92)', marginBottom: 6,
-                    fontFamily: "var(--font-d), 'Bricolage Grotesque', sans-serif", letterSpacing: '-0.3px',
+                    fontSize: 24, fontWeight: 800, color: 'rgba(255,255,255,0.92)', marginBottom: 8,
+                    fontFamily: "var(--font-d), 'Bricolage Grotesque', sans-serif", letterSpacing: '-0.4px',
                   }}>
                     {exp.role}
                   </div>
-                  <div style={{ fontSize: 13.5, color: exp.accent, fontStyle: 'italic', opacity: 0.85 }}>
+                  <div style={{ fontSize: 15, color: exp.accent, fontStyle: 'italic', opacity: 0.85 }}>
                     {exp.tagline}
                   </div>
                 </div>
 
                 {/* ─ Stats row ─ */}
-                <div style={{ display: 'flex', gap: 16, marginBottom: 32, flexWrap: 'wrap' }}>
+                <div style={{ display: 'flex', gap: 16, marginBottom: 36, flexWrap: 'wrap' }}>
                   {exp.stats.map(s => (
                     <div
                       key={s.label}
                       style={{
-                        padding: '12px 20px', borderRadius: 12, flexShrink: 0,
+                        padding: '16px 28px', borderRadius: 14, flexShrink: 0,
                         background: exp.accentBg, border: `1px solid ${exp.accentBorder}`,
-                        display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 2,
+                        display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 4,
                       }}
                     >
                       <span style={{
-                        fontSize: 22, fontWeight: 900, color: exp.accent,
+                        fontSize: 28, fontWeight: 900, color: exp.accent,
                         fontFamily: "var(--font-d), 'Bricolage Grotesque', sans-serif", lineHeight: 1,
                       }}>
                         {s.num}
                       </span>
-                      <span style={{ fontSize: 11.5, color: 'var(--text2)', fontWeight: 500, whiteSpace: 'nowrap' }}>
+                      <span style={{ fontSize: 13, color: 'var(--text2)', fontWeight: 500, whiteSpace: 'nowrap' }}>
                         {s.label}
                       </span>
                     </div>
@@ -259,14 +259,14 @@ export default function Experience() {
                       style={{ display: 'flex', alignItems: 'flex-start', gap: 14 }}
                     >
                       <span style={{
-                        fontSize: 17, flexShrink: 0, marginTop: 1,
-                        width: 34, height: 34, borderRadius: 10,
+                        fontSize: 19, flexShrink: 0,
+                        width: 40, height: 40, borderRadius: 12,
                         background: exp.accentBg,
                         display: 'flex', alignItems: 'center', justifyContent: 'center',
                       }}>
                         {b.icon}
                       </span>
-                      <p style={{ fontSize: 14.5, color: 'var(--text2)', lineHeight: 1.75, margin: 0, paddingTop: 6 }}>
+                      <p style={{ fontSize: 15.5, color: 'var(--text2)', lineHeight: 1.8, margin: 0, paddingTop: 8 }}>
                         {b.text}
                       </p>
                     </motion.div>
@@ -274,18 +274,18 @@ export default function Experience() {
                 </div>
 
                 {/* ─ Tech stack chips ─ */}
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, alignItems: 'center' }}>
-                  <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--text3)', marginRight: 4 }}>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, alignItems: 'center' }}>
+                  <span style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--text3)', marginRight: 4 }}>
                     Stack:
                   </span>
                   {exp.tech.map(t => (
                     <span
                       key={t}
                       style={{
-                        padding: '5px 13px', borderRadius: 8, fontSize: 12, fontWeight: 500,
-                        color: 'rgba(255,255,255,0.6)',
-                        background: 'rgba(255,255,255,0.04)',
-                        border: '1px solid rgba(255,255,255,0.09)',
+                        padding: '7px 16px', borderRadius: 10, fontSize: 13.5, fontWeight: 500,
+                        color: 'rgba(255,255,255,0.65)',
+                        background: 'rgba(255,255,255,0.05)',
+                        border: '1px solid rgba(255,255,255,0.1)',
                       }}
                     >
                       {t}
