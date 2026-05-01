@@ -21,23 +21,44 @@ export const roles = [
 
 export const skillsData = [
   {
+    category: 'Languages',
+    skills: [
+      { name: 'JavaScript', pct: 90 },
+      { name: 'TypeScript', pct: 85 },
+      { name: 'HTML / CSS', pct: 95 },
+      { name: 'Golang', pct: 65 },
+    ],
+  },
+  {
     category: 'Frontend',
     skills: [
-      { name: 'React / Next.js', pct: 92 },
-      { name: 'TypeScript', pct: 85 },
-      { name: 'TailwindCSS', pct: 92 },
-      { name: 'JavaScript (ES6+)', pct: 90 },
-      { name: 'HTML / CSS', pct: 95 },
+      { name: 'React.js', pct: 92 },
+      { name: 'Next.js', pct: 90 },
+    ],
+  },
+  {
+    category: 'Styling & UI',
+    skills: [
+      { name: 'Tailwind CSS', pct: 92 },
+      { name: 'Framer Motion', pct: 75 },
+      { name: 'GSAP', pct: 75 },
+      { name: 'Figma', pct: 72 },
     ],
   },
   {
     category: 'Backend',
     skills: [
-      { name: 'Node.js / Express.js', pct: 87 },
-      { name: 'Golang', pct: 65 },
-      { name: 'PostgreSQL / Prisma', pct: 82 },
+      { name: 'Node.js', pct: 87 },
+      { name: 'Express.js', pct: 87 },
       { name: 'REST API Design', pct: 90 },
-      { name: 'Firebase / Auth', pct: 80 },
+    ],
+  },
+  {
+    category: 'Database & Auth',
+    skills: [
+      { name: 'PostgreSQL', pct: 82 },
+      { name: 'Prisma', pct: 82 },
+      { name: 'Firebase', pct: 80 },
     ],
   },
   {
@@ -46,8 +67,6 @@ export const skillsData = [
       { name: 'Git / GitHub', pct: 93 },
       { name: 'Docker / Nginx', pct: 70 },
       { name: 'Vercel / Deployment', pct: 88 },
-      { name: 'Framer Motion / GSAP', pct: 75 },
-      { name: 'Figma / Design Tools', pct: 72 },
     ],
   },
 ]
