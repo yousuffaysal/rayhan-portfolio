@@ -25,7 +25,7 @@ export default function About() {
         <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,rgba(124,58,237,0.05)_0%,transparent_60%)] transform -translate-x-1/3 translate-y-1/3" />
         
         {/* Grid pattern overlay */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:linear-gradient(to_bottom,white_10%,transparent_90%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(var(--border)_1px,transparent_1px),linear-gradient(90deg,var(--border)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:linear-gradient(to_bottom,white_10%,transparent_90%)]" />
       </div>
 
       <div className="wrap relative z-10 flex flex-col gap-16 lg:gap-20">

@@ -21,9 +21,21 @@ export default function Nav() {
   return (
     <>
       <nav id="nav" className={stuck ? 'stuck' : ''}>
-        <a href="#hero" className="nav-logo">
-          <div className="logo-mark">RA</div>
-          <span className="logo-text">rayhan<em>.</em>dev</span>
+        <a href="#hero" className="nav-logo" aria-label="Home">
+          <div className="logo-mark">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              {/* Left leg of A */}
+              <path d="M 12 4 L 4 20" />
+              {/* Vertical spine of R / right leg of A */}
+              <path d="M 12 4 L 12 20" />
+              {/* R Loop */}
+              <path d="M 12 4 H 17 C 20 4 20 12 17 12 H 12" />
+              {/* R Leg */}
+              <path d="M 15 12 L 20 20" />
+              {/* A Crossbar */}
+              <path d="M 8 13 H 12" />
+            </svg>
+          </div>
         </a>
         <ul className="nav-links">
           <li><a href="#about">About</a></li>

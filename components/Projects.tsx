@@ -28,12 +28,12 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
         <div style={{ position: 'relative', width: '100%', height: 260, overflow: 'hidden', flexShrink: 0 }}>
           <img src={project.screenshot ?? ''} alt={project.name}
             style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', display: 'block' }} />
-          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 30%, rgba(10,12,20,0.96) 100%)' }} />
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 30%, var(--bg) 100%)' }} />
           <div style={{ position: 'absolute', bottom: 20, left: 28, right: 28 }}>
             <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 10 }}>
               {project.tags.map(t => <span className="proj-tag" key={t}>{t}</span>)}
             </div>
-            <div style={{ fontSize: 24, fontWeight: 800, color: '#fff', fontFamily: "var(--font-d),'Bricolage Grotesque',sans-serif" }}>{project.name}</div>
+            <div style={{ fontSize: 24, fontWeight: 800, color: 'var(--text)', fontFamily: "var(--font-d),'Bricolage Grotesque',sans-serif" }}>{project.name}</div>
           </div>
         </div>
         <div className="modal-body">
@@ -99,10 +99,10 @@ export default function Projects() {
                       display: 'grid',
                       gridTemplateColumns: '1fr 1fr',
                       height: CARD_HEIGHT,
-                      background: 'rgba(13, 16, 28, 0.95)',
+                      background: 'color-mix(in srgb, var(--bg) 95%, transparent)',
                       backdropFilter: 'blur(24px)',
                       borderRadius: 32,
-                      border: '1px solid rgba(255,255,255,0.08)',
+                      border: '1px solid var(--border)',
                       boxShadow: '0 30px 100px rgba(0,0,0,0.5)',
                       overflow: 'hidden',
                       cursor: 'pointer',
@@ -118,8 +118,8 @@ export default function Projects() {
                       <div style={{ 
                         position: 'absolute', inset: 0, 
                         background: isEven 
-                          ? 'linear-gradient(to right, transparent 30%, rgba(13,16,28,1) 100%)' 
-                          : 'linear-gradient(to left, transparent 30%, rgba(13,16,28,1) 100%)' 
+                          ? 'linear-gradient(to right, transparent 30%, var(--bg) 100%)' 
+                          : 'linear-gradient(to left, transparent 30%, var(--bg) 100%)' 
                       }} />
                       <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 4, background: `linear-gradient(90deg, ${accent}, transparent)` }} />
                     </div>
@@ -131,11 +131,11 @@ export default function Projects() {
                           <span key={t} style={{ fontSize: 11, fontWeight: 800, padding: '4px 14px', borderRadius: 99, color: accent, background: `${accent}15`, border: `1px solid ${accent}30`, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{t}</span>
                         ))}
                       </div>
-                      <h3 style={{ fontSize: 32, fontWeight: 800, color: '#fff', fontFamily: "var(--font-d),'Bricolage Grotesque',sans-serif", lineHeight: 1.1, margin: 0 }}>{p.name}</h3>
-                      <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.6)', lineHeight: 1.8, margin: 0 }}>{p.desc}</p>
+                      <h3 style={{ fontSize: 32, fontWeight: 800, color: 'var(--text)', fontFamily: "var(--font-d),'Bricolage Grotesque',sans-serif", lineHeight: 1.1, margin: 0 }}>{p.name}</h3>
+                      <p style={{ fontSize: 16, color: 'var(--text2)', lineHeight: 1.8, margin: 0 }}>{p.desc}</p>
                       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
                         {p.tech.slice(0, 5).map(t => (
-                          <span key={t} style={{ fontSize: 13, color: 'rgba(255,255,255,0.4)', background: 'rgba(255,255,255,0.05)', padding: '6px 14px', borderRadius: 10, border: '1px solid rgba(255,255,255,0.1)' }}>{t}</span>
+                          <span key={t} style={{ fontSize: 13, color: 'var(--text3)', background: 'var(--surface2)', padding: '6px 14px', borderRadius: 10, border: '1px solid var(--border2)' }}>{t}</span>
                         ))}
                       </div>
                       <div style={{ marginTop: 10 }}>

@@ -72,8 +72,8 @@ function SkillCard({ category, skills, index, span }: {
         position: 'relative',
         borderRadius: 20,
         padding: span === 'full' ? '36px 40px' : '36px 36px',
-        background: 'rgba(255,255,255,0.03)',
-        border: '1px solid rgba(255,255,255,0.08)',
+        background: 'var(--surface)',
+        border: '1px solid var(--border)',
         overflow: 'hidden',
         display: 'flex',
         flexDirection: span === 'full' ? 'row' : 'column',
@@ -94,7 +94,7 @@ function SkillCard({ category, skills, index, span }: {
       <div style={{
         position: 'absolute', right: span === 'full' ? 32 : 24, top: 16,
         fontSize: span === 'full' ? 120 : 96, fontWeight: 900, lineHeight: 1,
-        color: 'rgba(255,255,255,0.025)',
+        color: 'var(--text3)',
         fontFamily: "var(--font-d), 'Bricolage Grotesque', sans-serif",
         userSelect: 'none', pointerEvents: 'none',
       }}>
@@ -124,7 +124,7 @@ function SkillCard({ category, skills, index, span }: {
           </div>
           <div>
             <div style={{
-              fontSize: 18, fontWeight: 800, color: 'rgba(255,255,255,0.92)',
+              fontSize: 18, fontWeight: 800, color: 'var(--text)',
               fontFamily: "var(--font-d), 'Bricolage Grotesque', sans-serif",
               letterSpacing: '-0.3px', lineHeight: 1.2,
             }}>
@@ -140,14 +140,12 @@ function SkillCard({ category, skills, index, span }: {
         </div>
 
         {/* Divider (only vertical for full-width card) */}
-        {span !== 'full' && (
-          <div style={{ height: 1, background: 'rgba(255,255,255,0.07)', borderRadius: 99 }} />
-        )}
+          <div style={{ height: 1, background: 'var(--border2)', borderRadius: 99 }} />
       </div>
 
       {/* Vertical divider for full-width card */}
       {span === 'full' && (
-        <div style={{ width: 1, alignSelf: 'stretch', background: 'rgba(255,255,255,0.07)', flexShrink: 0 }} />
+        <div style={{ width: 1, alignSelf: 'stretch', background: 'var(--border2)', flexShrink: 0 }} />
       )}
 
       {/* Pills area */}
@@ -167,9 +165,9 @@ function SkillCard({ category, skills, index, span }: {
               display: 'inline-flex', alignItems: 'center', gap: 8,
               padding: '9px 18px', borderRadius: 10,
               fontSize: 13.5, fontWeight: 500,
-              color: 'rgba(255,255,255,0.72)',
-              background: 'rgba(255,255,255,0.045)',
-              border: '1px solid rgba(255,255,255,0.09)',
+              color: 'var(--text2)',
+              background: 'var(--surface2)',
+              border: '1px solid var(--border2)',
               letterSpacing: '0.01em',
             }}
           >

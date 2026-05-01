@@ -108,10 +108,10 @@ function CertCard({ cert, index }: { cert: any; index: number }) {
           position: relative;
           height: 100%;
           padding: 40px;
-          background: rgba(255, 255, 255, 0.03);
+          background: var(--surface);
           backdrop-filter: blur(20px);
           border-radius: 24px;
-          border: 1px solid rgba(255, 255, 255, 0.08);
+          border: 1px solid var(--border);
           box-shadow: 0 20px 50px rgba(0,0,0,0.3);
           overflow: hidden;
           display: flex;
@@ -121,7 +121,7 @@ function CertCard({ cert, index }: { cert: any; index: number }) {
         }
         .cert-card-inner:hover {
           border-color: rgba(32, 176, 248, 0.4);
-          background: rgba(255, 255, 255, 0.05);
+          background: var(--surface2);
         }
         .cert-header {
           display: flex;
@@ -166,13 +166,13 @@ function CertCard({ cert, index }: { cert: any; index: number }) {
         .cert-issuer {
           font-size: 18px;
           font-weight: 700;
-          color: #fff;
+          color: var(--text);
           margin: 0;
         }
         .cert-title {
           font-size: 22px;
           font-weight: 800;
-          color: #fff;
+          color: var(--text);
           line-height: 1.3;
           margin: 0;
           font-family: var(--font-d);
@@ -180,7 +180,7 @@ function CertCard({ cert, index }: { cert: any; index: number }) {
         }
         .cert-divider {
           height: 1px;
-          background: linear-gradient(90deg, rgba(255,255,255,0.1), transparent);
+          background: linear-gradient(90deg, var(--border2), transparent);
           margin-top: auto;
         }
         .cert-footer {
@@ -197,13 +197,13 @@ function CertCard({ cert, index }: { cert: any; index: number }) {
         }
         .cert-label {
           font-size: 11px;
-          color: rgba(255,255,255,0.4);
+          color: var(--text3);
           font-weight: 600;
           text-transform: uppercase;
         }
         .cert-value {
           font-size: 15px;
-          color: #fff;
+          color: var(--text);
           font-weight: 700;
         }
         .cert-verify-btn {
@@ -211,12 +211,12 @@ function CertCard({ cert, index }: { cert: any; index: number }) {
           align-items: center;
           gap: 8px;
           padding: 10px 18px;
-          background: rgba(255,255,255,0.05);
-          border: 1px solid rgba(255,255,255,0.1);
+          background: var(--surface2);
+          border: 1px solid var(--border2);
           border-radius: 12px;
           font-size: 13px;
           font-weight: 700;
-          color: #fff;
+          color: var(--text);
           text-decoration: none;
           transition: all 0.3s ease;
         }
@@ -255,7 +255,7 @@ export default function Certificates() {
         >
           <div className="sec-tag">Credentials</div>
           <h2 className="sec-h">Certificates & <span style={{ color: 'var(--accent)' }}>Recognition</span></h2>
-          <p style={{ color: 'rgba(255,255,255,0.5)', maxWidth: 600, fontSize: 16, lineHeight: 1.6, marginTop: 16 }}>
+          <p style={{ color: 'var(--text2)', maxWidth: 600, fontSize: 16, lineHeight: 1.6, marginTop: 16 }}>
             Validating technical expertise and industry standards through professional certifications and academic honors.
           </p>
         </motion.div>

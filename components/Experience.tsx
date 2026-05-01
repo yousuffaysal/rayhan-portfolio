@@ -121,8 +121,8 @@ export default function Experience() {
                 position: 'relative',
                 borderRadius: 24,
                 overflow: 'hidden',
-                background: 'rgba(255,255,255,0.025)',
-                border: '1px solid rgba(255,255,255,0.08)',
+                background: 'var(--surface)',
+                border: '1px solid var(--border)',
                 boxShadow: '0 8px 40px rgba(0,0,0,0.25)',
               }}
             >
@@ -154,7 +154,7 @@ export default function Experience() {
                     <div>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 6 }}>
                         <span style={{
-                          fontSize: 26, fontWeight: 800, color: 'rgba(255,255,255,0.95)',
+                          fontSize: 26, fontWeight: 800, color: 'var(--text)',
                           fontFamily: "var(--font-d), 'Bricolage Grotesque', sans-serif",
                           letterSpacing: '-0.5px',
                         }}>
@@ -187,7 +187,7 @@ export default function Experience() {
                           </svg>
                           {exp.location}
                         </span>
-                        <span style={{ color: 'rgba(255,255,255,0.15)' }}>·</span>
+                        <span style={{ color: 'var(--text3)' }}>·</span>
                         <span style={{ fontSize: 14, color: 'var(--text2)', display: 'flex', alignItems: 'center', gap: 6 }}>
                           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.5 }}>
                             <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
@@ -213,7 +213,7 @@ export default function Experience() {
                 {/* Role + tagline */}
                 <div style={{ marginBottom: 32 }}>
                   <div style={{
-                    fontSize: 24, fontWeight: 800, color: 'rgba(255,255,255,0.92)', marginBottom: 8,
+                    fontSize: 24, fontWeight: 800, color: 'var(--text)', marginBottom: 8,
                     fontFamily: "var(--font-d), 'Bricolage Grotesque', sans-serif", letterSpacing: '-0.4px',
                   }}>
                     {exp.role}
@@ -283,9 +283,9 @@ export default function Experience() {
                       key={t}
                       style={{
                         padding: '7px 16px', borderRadius: 10, fontSize: 13.5, fontWeight: 500,
-                        color: 'rgba(255,255,255,0.65)',
-                        background: 'rgba(255,255,255,0.05)',
-                        border: '1px solid rgba(255,255,255,0.1)',
+                        color: 'var(--text2)',
+                        background: 'var(--surface2)',
+                        border: '1px solid var(--border2)',
                       }}
                     >
                       {t}
