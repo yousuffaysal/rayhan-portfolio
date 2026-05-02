@@ -613,8 +613,60 @@ export default function AdminProjectsPage() {
 
                 {/* Screenshot */}
                 <div>
-                  <span style={lbl}>Screenshot URL</span>
-                  <input style={inp} value={form.screenshot} onChange={e => setForm(f => ({ ...f, screenshot: e.target.value }))} placeholder="/projects/myproject.png or https://…" />
+                  <span style={lbl}>Screenshot</span>
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept="image/png,image/jpeg,image/webp,image/gif,image/avif"
+                    style={{ display: 'none' }}
+                    onChange={e => { const f = e.target.files?.[0]; if (f) handleScreenshotUpload(f) }}
+                  />
+                  {/* Preview */}
+                  {form.screenshot && (
+                    <div style={{
+                      position: 'relative', marginBottom: 8, borderRadius: 10, overflow: 'hidden',
+                      border: '1px solid var(--border2)', height: 90,
+                    }}>
+                      <img
+                        src={form.screenshot}
+                        alt="screenshot preview"
+                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                        onError={e => { (e.target as HTMLImageElement).style.display = 'none' }}
+                      />
+                      <button
+                        onClick={() => setForm(f => ({ ...f, screenshot: '' }))}
+                        style={{
+                          position: 'absolute', top: 6, right: 6,
+                          width: 22, height: 22, borderRadius: '50%',
+                          background: 'rgba(0,0,0,0.7)', border: '1px solid rgba(255,255,255,0.15)',
+                          color: '#fff', fontSize: 10, cursor: 'pointer',
+                          display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        }}
+                      >✕</button>
+                    </div>
+                  )}
+                  <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+                    <button
+                      onClick={() => fileInputRef.current?.click()}
+                      disabled={uploading}
+                      style={{
+                        padding: '7px 14px', borderRadius: 8, fontSize: 12, fontWeight: 600,
+                        background: uploading ? 'rgba(32,176,248,0.15)' : 'rgba(32,176,248,0.12)',
+                        border: '1px solid rgba(32,176,248,0.3)',
+                        color: uploading ? 'var(--text3)' : 'var(--accent)',
+                        cursor: uploading ? 'not-allowed' : 'pointer', whiteSpace: 'nowrap',
+                        flexShrink: 0,
+                      }}
+                    >
+                      {uploading ? 'Uploading…' : '↑ Upload'}
+                    </button>
+                    <input
+                      style={{ ...inp, marginBottom: 0, flex: 1 }}
+                      value={form.screenshot}
+                      onChange={e => setForm(f => ({ ...f, screenshot: e.target.value }))}
+                      placeholder="/projects/myproject.png or https://…"
+                    />
+                  </div>
                 </div>
               </div>
 
