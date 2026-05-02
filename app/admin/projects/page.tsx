@@ -76,6 +76,7 @@ export default function AdminProjectsPage() {
   const [form, setForm] = useState(emptyForm)
   const [saving, setSaving] = useState(false)
   const [deleteId, setDeleteId] = useState<string | null>(null)
+  const [seeding, setSeeding] = useState(false)
 
   const checkAuth = useCallback(async () => {
     const res = await fetch('/api/admin/me')
@@ -147,6 +148,14 @@ export default function AdminProjectsPage() {
     } finally { setSaving(false) }
   }
 
+  async function handleSeed() {
+    setSeeding(true)
+    try {
+      await fetch('/api/admin/seed', { method: 'POST' })
+      fetchProjects()
+    } finally { setSeeding(false) }
+  }
+
   async function handleDelete(id: string) {
     setDeleteId(id)
     await fetch(`/api/admin/projects/${id}`, { method: 'DELETE' })
@@ -180,16 +189,28 @@ export default function AdminProjectsPage() {
             </h1>
             <p style={{ fontSize: 13.5, color: 'var(--text2)' }}>{projects.length} total projects</p>
           </div>
-          <button onClick={openAdd} style={{
-            display: 'inline-flex', alignItems: 'center', gap: 8,
-            padding: '11px 22px', borderRadius: 12, fontSize: 14, fontWeight: 700,
-            background: 'var(--accent)', color: '#07080f', border: 'none', cursor: 'pointer',
-            fontFamily: "var(--font-b), 'Instrument Sans', sans-serif",
-            boxShadow: '0 4px 20px rgba(32,176,248,0.3)',
-          }}>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M12 5v14M5 12h14"/></svg>
-            Add Project
-          </button>
+          <div style={{ display: 'flex', gap: 10 }}>
+            <button onClick={handleSeed} disabled={seeding} style={{
+              display: 'inline-flex', alignItems: 'center', gap: 8,
+              padding: '11px 20px', borderRadius: 12, fontSize: 14, fontWeight: 700,
+              background: 'transparent', color: 'var(--text2)',
+              border: '1px solid var(--border2)', cursor: seeding ? 'not-allowed' : 'pointer',
+              fontFamily: "var(--font-b), 'Instrument Sans', sans-serif",
+              opacity: seeding ? 0.6 : 1,
+            }}>
+              {seeding ? '…' : '⬇ Import Portfolio'}
+            </button>
+            <button onClick={openAdd} style={{
+              display: 'inline-flex', alignItems: 'center', gap: 8,
+              padding: '11px 22px', borderRadius: 12, fontSize: 14, fontWeight: 700,
+              background: 'var(--accent)', color: '#07080f', border: 'none', cursor: 'pointer',
+              fontFamily: "var(--font-b), 'Instrument Sans', sans-serif",
+              boxShadow: '0 4px 20px rgba(32,176,248,0.3)',
+            }}>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M12 5v14M5 12h14"/></svg>
+              Add Project
+            </button>
+          </div>
         </div>
 
         {loading ? (
@@ -251,10 +272,10 @@ export default function AdminProjectsPage() {
           <div style={{
             width: '100%', maxWidth: 720, borderRadius: 24,
             background: 'var(--bg2)', border: '1px solid var(--border2)',
-            overflow: 'hidden', position: 'relative', marginTop: 'auto', marginBottom: 'auto',
+            position: 'relative',
             boxShadow: '0 40px 100px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05)',
           }}>
-            <div style={{ height: 3, background: 'linear-gradient(90deg, var(--accent), rgba(167,139,250,0.8), transparent)' }} />
+            <div style={{ height: 3, background: 'linear-gradient(90deg, var(--accent), rgba(167,139,250,0.8), transparent)', borderRadius: '24px 24px 0 0' }} />
             <div style={{ padding: 'clamp(24px, 4vw, 40px)' }}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 28 }}>
                 <h2 style={{ fontSize: 20, fontWeight: 800, color: 'var(--text)', fontFamily: "var(--font-d), 'Bricolage Grotesque', sans-serif", letterSpacing: '-0.4px' }}>
