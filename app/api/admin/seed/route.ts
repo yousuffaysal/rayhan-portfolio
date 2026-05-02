@@ -1,12 +1,8 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { getAdminFromRequest } from '@/lib/auth'
+import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { projectsData } from '@/data/portfolio'
 
-export async function POST(req: NextRequest) {
-  const admin = getAdminFromRequest(req)
-  if (!admin) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-
+export async function POST() {
   try {
     const existing = await prisma.project.count()
     if (existing > 0) {

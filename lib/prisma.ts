@@ -1,11 +1,26 @@
 import { PrismaClient } from '@prisma/client'
+import { PrismaPg } from '@prisma/adapter-pg'
+import pg from 'pg'
 
-const globalForPrisma = globalThis as unknown as { prisma: PrismaClient }
+let _client: PrismaClient | undefined
 
-export const prisma =
-  globalForPrisma.prisma ??
-  new PrismaClient()
+function getClient(): PrismaClient {
+  if (!_client) {
+    const pool = new pg.Pool({
+      connectionString: process.env.DATABASE_URL,
+      ssl: { rejectUnauthorized: false },
+    })
+    _client = new PrismaClient({ adapter: new PrismaPg(pool) })
+  }
+  return _client
+}
 
-if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma
+// Proxy defers pool creation until first property access (inside a route handler,
+// after Next.js has injected env vars into process.env)
+export const prisma = new Proxy({} as PrismaClient, {
+  get(_, prop) {
+    return (getClient() as unknown as Record<string | symbol, unknown>)[prop]
+  },
+})
 
 export default prisma
