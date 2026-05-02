@@ -478,68 +478,71 @@ export default function AdminProjectsPage() {
         )}
       </div>
 
-      {/* Add/Edit Modal */}
+      {/* Add/Edit Modal — landscape two-column layout */}
       {showForm && (
-        {/* Outer: scroll container only — no flex, so overflowY works in all browsers */}
         <div
           style={{
             position: 'fixed', inset: 0, zIndex: 200,
-            background: 'rgba(0,0,0,0.8)', backdropFilter: 'blur(12px)',
-            overflowY: 'scroll',
+            background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(14px)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            padding: '20px 24px', overflowY: 'auto',
           }}
           onClick={e => { if (e.target === e.currentTarget) setShowForm(false) }}
         >
-          {/* Inner: centering wrapper */}
-          <div style={{ minHeight: '100%', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '32px 16px' }}>
           <div style={{
-            width: '100%', maxWidth: 740, borderRadius: 24,
+            width: '100%', maxWidth: 1080, borderRadius: 24,
             background: 'var(--bg)', border: '1px solid var(--border2)',
-            boxShadow: '0 40px 120px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.06)',
+            boxShadow: '0 40px 120px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.06)',
+            display: 'flex', flexDirection: 'column',
           }}>
-            <div style={{ height: 3, background: 'linear-gradient(90deg, var(--accent), rgba(167,139,250,0.9), rgba(52,211,153,0.5))', borderRadius: '24px 24px 0 0' }} />
+            {/* Top accent bar */}
+            <div style={{ height: 3, background: 'linear-gradient(90deg, var(--accent), rgba(167,139,250,0.9), rgba(52,211,153,0.5))', borderRadius: '24px 24px 0 0', flexShrink: 0 }} />
 
-            <div style={{ padding: 'clamp(24px, 4vw, 44px)' }}>
-              {/* Modal header */}
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 32 }}>
-                <div>
-                  <h2 style={{
-                    fontSize: 22, fontWeight: 800, color: 'var(--text)',
-                    fontFamily: "var(--font-d), 'Bricolage Grotesque', sans-serif",
-                    letterSpacing: '-0.5px', marginBottom: 4,
-                  }}>
-                    {editProject ? 'Edit Project' : 'New Project'}
-                  </h2>
-                  <p style={{ fontSize: 13, color: 'var(--text3)' }}>
-                    {editProject ? `Editing "${editProject.name}"` : 'Fill in the details for the new project'}
-                  </p>
-                </div>
-                <button
-                  onClick={() => setShowForm(false)}
-                  style={{
-                    width: 36, height: 36, borderRadius: '50%',
-                    background: 'rgba(255,255,255,0.05)', border: '1px solid var(--border2)',
-                    color: 'var(--text2)', cursor: 'pointer', fontSize: 14,
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    transition: 'all 0.15s',
-                  }}
-                >✕</button>
+            {/* Header */}
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '20px 28px 0' }}>
+              <div>
+                <h2 style={{
+                  fontSize: 20, fontWeight: 800, color: 'var(--text)',
+                  fontFamily: "var(--font-d), 'Bricolage Grotesque', sans-serif",
+                  letterSpacing: '-0.5px', marginBottom: 2,
+                }}>
+                  {editProject ? 'Edit Project' : 'New Project'}
+                </h2>
+                <p style={{ fontSize: 12, color: 'var(--text3)' }}>
+                  {editProject ? `Editing "${editProject.name}"` : 'Fill in the details for the new project'}
+                </p>
               </div>
+              <button
+                onClick={() => setShowForm(false)}
+                style={{
+                  width: 34, height: 34, borderRadius: '50%',
+                  background: 'rgba(255,255,255,0.05)', border: '1px solid var(--border2)',
+                  color: 'var(--text2)', cursor: 'pointer', fontSize: 13,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                }}
+              >✕</button>
+            </div>
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+            {/* Two-column body */}
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0, padding: '20px 28px' }}>
+
+              {/* LEFT COLUMN — identity & meta */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 14, paddingRight: 24, borderRight: '1px solid var(--border)' }}>
+
                 {/* Name + Emoji */}
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 110px', gap: 12 }}>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 90px', gap: 10 }}>
                   <div>
                     <span style={lbl}>Project Name *</span>
                     <input style={inp} value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} placeholder="My Awesome Project" />
                   </div>
                   <div>
                     <span style={lbl}>Emoji</span>
-                    <input style={{ ...inp, textAlign: 'center', fontSize: 22 }} value={form.emoji} onChange={e => setForm(f => ({ ...f, emoji: e.target.value }))} />
+                    <input style={{ ...inp, textAlign: 'center', fontSize: 20 }} value={form.emoji} onChange={e => setForm(f => ({ ...f, emoji: e.target.value }))} />
                   </div>
                 </div>
 
                 {/* Tags + Order */}
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 90px', gap: 12 }}>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 80px', gap: 10 }}>
                   <div>
                     <span style={lbl}>Tags (comma separated)</span>
                     <input style={inp} value={form.tags} onChange={e => setForm(f => ({ ...f, tags: e.target.value }))} placeholder="Full-Stack, React, PostgreSQL" />
@@ -552,8 +555,8 @@ export default function AdminProjectsPage() {
 
                 {/* Featured toggle */}
                 <div style={{
-                  display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px',
-                  borderRadius: 12, background: form.featured ? 'rgba(251,191,36,0.06)' : 'rgba(255,255,255,0.02)',
+                  display: 'flex', alignItems: 'center', gap: 10, padding: '10px 14px',
+                  borderRadius: 10, background: form.featured ? 'rgba(251,191,36,0.06)' : 'rgba(255,255,255,0.02)',
                   border: `1px solid ${form.featured ? 'rgba(251,191,36,0.25)' : 'var(--border)'}`,
                   transition: 'all 0.2s',
                 }}>
@@ -562,47 +565,33 @@ export default function AdminProjectsPage() {
                     id="featured"
                     checked={form.featured}
                     onChange={e => setForm(f => ({ ...f, featured: e.target.checked }))}
-                    style={{ width: 16, height: 16, accentColor: '#fbbf24', cursor: 'pointer' }}
+                    style={{ width: 15, height: 15, accentColor: '#fbbf24', cursor: 'pointer' }}
                   />
-                  <label htmlFor="featured" style={{ fontSize: 13.5, color: form.featured ? '#fbbf24' : 'var(--text2)', cursor: 'pointer', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 6 }}>
-                    <FaStar size={12} /> Featured project — shown prominently on the portfolio
+                  <label htmlFor="featured" style={{ fontSize: 12.5, color: form.featured ? '#fbbf24' : 'var(--text2)', cursor: 'pointer', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 5 }}>
+                    <FaStar size={11} /> Featured — shown prominently on the portfolio
                   </label>
                 </div>
 
                 {/* Divider */}
-                <div style={{ height: 1, background: 'var(--border)', margin: '2px 0' }} />
+                <div style={{ height: 1, background: 'var(--border)' }} />
 
-                {/* Descriptions */}
-                <div>
-                  <span style={lbl}>Short Description *</span>
-                  <textarea style={{ ...inp, resize: 'vertical', minHeight: 72 }} value={form.desc} onChange={e => setForm(f => ({ ...f, desc: e.target.value }))} placeholder="Brief description shown on the project card…" />
-                </div>
-                <div>
-                  <span style={lbl}>Full Description *</span>
-                  <textarea style={{ ...inp, resize: 'vertical', minHeight: 110 }} value={form.fullDesc} onChange={e => setForm(f => ({ ...f, fullDesc: e.target.value }))} placeholder="Detailed description shown in the modal…" />
-                </div>
-
-                {/* Tech */}
-                <div>
-                  <span style={lbl}>Tech Stack (comma separated)</span>
-                  <input style={inp} value={form.tech} onChange={e => setForm(f => ({ ...f, tech: e.target.value }))} placeholder="React, Node.js, PostgreSQL, Prisma…" />
-                </div>
-
-                {/* URLs */}
+                {/* Links */}
                 <div>
                   <span style={lbl}>Links</span>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10 }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                     <div>
-                      <span style={{ ...lbl, marginBottom: 5, fontSize: 10, color: 'var(--text3)' }}>Live URL</span>
+                      <span style={{ ...lbl, fontSize: 10, color: 'var(--text3)', marginBottom: 4 }}>Live URL</span>
                       <input style={inp} value={form.liveUrl} onChange={e => setForm(f => ({ ...f, liveUrl: e.target.value }))} placeholder="https://…" />
                     </div>
-                    <div>
-                      <span style={{ ...lbl, marginBottom: 5, fontSize: 10, color: 'var(--text3)' }}>Frontend GitHub</span>
-                      <input style={inp} value={form.ghClientUrl} onChange={e => setForm(f => ({ ...f, ghClientUrl: e.target.value }))} placeholder="github.com/…" />
-                    </div>
-                    <div>
-                      <span style={{ ...lbl, marginBottom: 5, fontSize: 10, color: 'var(--text3)' }}>Backend GitHub</span>
-                      <input style={inp} value={form.ghServerUrl} onChange={e => setForm(f => ({ ...f, ghServerUrl: e.target.value }))} placeholder="github.com/…" />
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
+                      <div>
+                        <span style={{ ...lbl, fontSize: 10, color: 'var(--text3)', marginBottom: 4 }}>Frontend GitHub</span>
+                        <input style={inp} value={form.ghClientUrl} onChange={e => setForm(f => ({ ...f, ghClientUrl: e.target.value }))} placeholder="github.com/…" />
+                      </div>
+                      <div>
+                        <span style={{ ...lbl, fontSize: 10, color: 'var(--text3)', marginBottom: 4 }}>Backend GitHub</span>
+                        <input style={inp} value={form.ghServerUrl} onChange={e => setForm(f => ({ ...f, ghServerUrl: e.target.value }))} placeholder="github.com/…" />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -612,48 +601,61 @@ export default function AdminProjectsPage() {
                   <span style={lbl}>Screenshot URL</span>
                   <input style={inp} value={form.screenshot} onChange={e => setForm(f => ({ ...f, screenshot: e.target.value }))} placeholder="/projects/myproject.png or https://…" />
                 </div>
+              </div>
 
-                {/* Challenges */}
+              {/* RIGHT COLUMN — content */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 14, paddingLeft: 24 }}>
                 <div>
+                  <span style={lbl}>Short Description *</span>
+                  <textarea style={{ ...inp, resize: 'vertical', minHeight: 68 }} value={form.desc} onChange={e => setForm(f => ({ ...f, desc: e.target.value }))} placeholder="Brief description shown on the project card…" />
+                </div>
+                <div style={{ flex: 1 }}>
+                  <span style={lbl}>Full Description *</span>
+                  <textarea style={{ ...inp, resize: 'vertical', minHeight: 120 }} value={form.fullDesc} onChange={e => setForm(f => ({ ...f, fullDesc: e.target.value }))} placeholder="Detailed description shown in the modal…" />
+                </div>
+                <div>
+                  <span style={lbl}>Tech Stack (comma separated)</span>
+                  <input style={inp} value={form.tech} onChange={e => setForm(f => ({ ...f, tech: e.target.value }))} placeholder="React, Node.js, PostgreSQL, Prisma…" />
+                </div>
+                <div style={{ flex: 1 }}>
                   <span style={lbl}>Challenges (one per line)</span>
                   <textarea
-                    style={{ ...inp, resize: 'vertical', minHeight: 100 }}
+                    style={{ ...inp, resize: 'vertical', minHeight: 90 }}
                     value={form.challenges}
                     onChange={e => setForm(f => ({ ...f, challenges: e.target.value }))}
                     placeholder={'Integrating Stripe payments securely.\nBuilding a real-time booking system.'}
                   />
                 </div>
-
-                {/* Actions */}
-                <div style={{ display: 'flex', gap: 12, paddingTop: 4 }}>
-                  <button
-                    onClick={handleSave}
-                    disabled={saving || !form.name.trim()}
-                    style={{
-                      flex: 1, padding: '14px 0', borderRadius: 13, fontSize: 15, fontWeight: 700,
-                      background: saving || !form.name.trim() ? 'rgba(32,176,248,0.35)' : 'var(--accent)',
-                      color: '#07080f', border: 'none',
-                      cursor: saving || !form.name.trim() ? 'not-allowed' : 'pointer',
-                      fontFamily: "var(--font-b), 'Instrument Sans', sans-serif",
-                      boxShadow: saving || !form.name.trim() ? 'none' : '0 4px 20px rgba(32,176,248,0.3)',
-                      transition: 'all 0.2s', letterSpacing: '0.01em',
-                    }}
-                  >
-                    {saving ? 'Saving…' : editProject ? 'Save Changes' : 'Add Project'}
-                  </button>
-                  <button
-                    onClick={() => setShowForm(false)}
-                    style={{
-                      padding: '14px 28px', borderRadius: 13, fontSize: 14, fontWeight: 600,
-                      background: 'rgba(255,255,255,0.04)', border: '1px solid var(--border2)',
-                      color: 'var(--text2)', cursor: 'pointer', letterSpacing: '0.01em',
-                    }}
-                  >Cancel</button>
-                </div>
               </div>
             </div>
+
+            {/* Footer actions — full width */}
+            <div style={{ display: 'flex', gap: 12, padding: '0 28px 24px', borderTop: '1px solid var(--border)', paddingTop: 20 }}>
+              <button
+                onClick={handleSave}
+                disabled={saving || !form.name.trim()}
+                style={{
+                  flex: 1, padding: '13px 0', borderRadius: 12, fontSize: 14, fontWeight: 700,
+                  background: saving || !form.name.trim() ? 'rgba(32,176,248,0.35)' : 'var(--accent)',
+                  color: '#07080f', border: 'none',
+                  cursor: saving || !form.name.trim() ? 'not-allowed' : 'pointer',
+                  fontFamily: "var(--font-b), 'Instrument Sans', sans-serif",
+                  boxShadow: saving || !form.name.trim() ? 'none' : '0 4px 20px rgba(32,176,248,0.3)',
+                  transition: 'all 0.2s', letterSpacing: '0.01em',
+                }}
+              >
+                {saving ? 'Saving…' : editProject ? 'Save Changes' : 'Add Project'}
+              </button>
+              <button
+                onClick={() => setShowForm(false)}
+                style={{
+                  padding: '13px 32px', borderRadius: 12, fontSize: 13, fontWeight: 600,
+                  background: 'rgba(255,255,255,0.04)', border: '1px solid var(--border2)',
+                  color: 'var(--text2)', cursor: 'pointer', letterSpacing: '0.01em',
+                }}
+              >Cancel</button>
+            </div>
           </div>
-          </div> {/* centering wrapper */}
         </div>
       )}
 
