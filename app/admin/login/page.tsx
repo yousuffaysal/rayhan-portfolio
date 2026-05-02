@@ -274,7 +274,7 @@ export default function AdminLoginPage() {
         @keyframes spin { to { transform: rotate(360deg) } }
         .fg { display: flex; flex-direction: column; gap: 7px; }
         .fg label { font-size: 12.5px; font-weight: 600; color: var(--text2); letter-spacing: 0.03em; font-family: var(--font-b), Instrument Sans, sans-serif; }
-        .fg input { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 13px 16px; font-family: var(--font-b), Instrument Sans, sans-serif; font-size: 14.5px; color: var(--text); outline: none; transition: border-color 0.2s, box-shadow 0.2s; }
+        .fg input { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 13px 16px; font-family: var(--font-b), Instrument Sans, sans-serif; font-size: 14.5px; color: var(--text); caret-color: var(--accent); outline: none; transition: border-color 0.2s, box-shadow 0.2s; }
         .fg input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(32,176,248,0.15); }
         .fg input::placeholder { color: var(--text3); }
       `}</style>

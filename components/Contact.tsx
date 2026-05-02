@@ -7,15 +7,40 @@ import { personalInfo } from '@/data/portfolio'
 
 export default function Contact() {
   const [sent, setSent] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
   const [form, setForm] = useState({ firstName: '', lastName: '', email: '', subject: '', message: '' })
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }))
   }
 
-  function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault()
-    setSent(true)
+    setError('')
+    setLoading(true)
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: `${form.firstName} ${form.lastName}`.trim(),
+          email: form.email,
+          subject: form.subject || undefined,
+          message: form.message,
+        }),
+      })
+      if (res.ok) {
+        setSent(true)
+      } else {
+        const data = await res.json().catch(() => ({}))
+        setError(data?.error || 'Something went wrong. Please try again.')
+      }
+    } catch {
+      setError('Network error. Please try again.')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -104,12 +129,34 @@ export default function Contact() {
                   <label>Message</label>
                   <textarea rows={5} name="message" placeholder="Tell me about your project, deadline, and budget..." value={form.message} onChange={handleChange} />
                 </div>
-                <button type="submit" className="form-btn">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
-                  </svg>
-                  Send Message
+                {error && (
+                  <div style={{
+                    padding: '10px 14px',
+                    background: 'rgba(239,68,68,0.1)',
+                    border: '1px solid rgba(239,68,68,0.25)',
+                    borderRadius: 10,
+                    fontSize: 13,
+                    color: '#f87171',
+                  }}>
+                    {error}
+                  </div>
+                )}
+                <button type="submit" className="form-btn" disabled={loading} style={{ opacity: loading ? 0.7 : 1, cursor: loading ? 'not-allowed' : 'pointer' }}>
+                  {loading ? (
+                    <>
+                      <div style={{ width: 16, height: 16, border: '2px solid rgba(7,8,15,0.3)', borderTopColor: '#07080f', borderRadius: '50%', animation: 'spin 0.7s linear infinite' }} />
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                        <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
+                      </svg>
+                      Send Message
+                    </>
+                  )}
                 </button>
+                <style>{`@keyframes spin { to { transform: rotate(360deg) } }`}</style>
               </form>
             )}
           </motion.div>
