@@ -1,20 +1,24 @@
 import jwt, { JwtPayload, SignOptions } from 'jsonwebtoken'
 import { NextRequest } from 'next/server'
 
-const JWT_SECRET = process.env.JWT_SECRET as string
-
 export interface AdminPayload extends JwtPayload {
   username: string
 }
 
+function secret(): string {
+  const s = process.env.JWT_SECRET
+  if (!s) throw new Error('JWT_SECRET env var is not set')
+  return s
+}
+
 export function signToken(payload: Record<string, unknown>): string {
   const options: SignOptions = { expiresIn: '7d' }
-  return jwt.sign(payload, JWT_SECRET, options)
+  return jwt.sign(payload, secret(), options)
 }
 
 export function verifyToken(token: string): AdminPayload | null {
   try {
-    return jwt.verify(token, JWT_SECRET) as AdminPayload
+    return jwt.verify(token, secret()) as AdminPayload
   } catch {
     return null
   }
