@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import {
   FaCode, FaShoppingBag, FaFlask, FaGraduationCap, FaBriefcase,
@@ -118,6 +118,8 @@ export default function AdminProjectsPage() {
   const [deleteId, setDeleteId] = useState<string | null>(null)
   const [seeding, setSeeding] = useState(false)
   const [hoverId, setHoverId] = useState<string | null>(null)
+  const [uploading, setUploading] = useState(false)
+  const fileInputRef = useRef<HTMLInputElement>(null)
 
   const checkAuth = useCallback(async () => {
     const res = await fetch('/api/admin/me')
@@ -161,6 +163,19 @@ export default function AdminProjectsPage() {
       order: p.order, featured: p.featured,
     })
     setShowForm(true)
+  }
+
+  async function handleScreenshotUpload(file: File) {
+    setUploading(true)
+    try {
+      const fd = new FormData()
+      fd.append('file', file)
+      const res = await fetch('/api/admin/upload', { method: 'POST', body: fd })
+      const data = await res.json()
+      if (res.ok) setForm(f => ({ ...f, screenshot: data.url }))
+    } finally {
+      setUploading(false)
+    }
   }
 
   async function handleSave() {
